@@ -7,19 +7,19 @@
 - [Nginx config](#nginx-config)
 - [Install docker, docker desktop and docker compose:](#install-docker-docker-desktop-and-docker-compose)
   - [Executing the Docker Command Without Sudo](#executing-the-docker-command-without-sudo)
-  - [go into docker container shell:](#go-into-docker-container-shell)
+  - [Go into docker container shell:](#go-into-docker-container-shell)
   - [Disable/ enable docker on startup:](#disable-enable-docker-on-startup)
-- [install java and manage version](#install-java-and-manage-version)
+- [Install java and manage version](#install-java-and-manage-version)
 - [Install Mongodb](#install-mongodb)
-  - [Down amd64.deb of mongo server community and mongo shell or install both on mongo docs, install mongo compass](#down-amd64deb-of-mongo-server-community-and-mongo-shell-or-install-both-on-mongo-docs-install-mongo-compass)
+  - [Install mongodb compass](#install-mongodb-compass)
   - [Create database and user for mongo database](#create-database-and-user-for-mongo-database)
   - [Some command in mongo shell:](#some-command-in-mongo-shell)
 - [Install Mysql](#install-mysql)
+  - [Setup mysql authen](#setup-mysql-authen)
   - [Install mysql workbench](#install-mysql-workbench)
 - [Install redis](#install-redis)
+  - [Test redis server](#test-redis-server)
   - [Install redis insight](#install-redis-insight)
-
-
 
 # Check version ubuntu
 
@@ -32,7 +32,7 @@
 # Add user Ubuntu
 
 - sudo adduser oscar
--  <a> https://www.digitalocean.com/community/tutorials/how-to-add-and-delete-users-on-ubuntu-20-04 </a>
+- <a> https://www.digitalocean.com/community/tutorials/how-to-add-and-delete-users-on-ubuntu-20-04 </a>
 
 # install node nvm
 
@@ -57,7 +57,37 @@
 - write nginx conf in sites-available and ln
 - touch oscar-be.conf
 - nano oscar-be.conf
-- only need one server { ... }
+
+```ts
+server {
+  listen         80;
+  listen         [::]:80;
+  server_name    yourserver.com;
+
+  client_max_body_size 128M;
+
+  location / {
+    proxy_set_header X-Real-IP $remote_addr ;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for ;
+    proxy_set_header X-Forwarded-Proto https;
+    proxy_pass http://localhost:3013;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+    proxy_set_header Host $host;
+  }
+  # Do this if you want alias to a folder file in server
+  location /uploads/ {
+    add_header Access-Control-Allow-Origin *;
+    alias /home/friendify/backend-chat-gpt/uploads/;
+  }
+}
+
+
+
+
+```
+
 - systemctl -t nginx
 - systemctl restart nginx
 - ln -s /etc/nginx/sites-available/oscar-be.conf /etc/nginx/sites-enabled
@@ -93,7 +123,7 @@ $ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugi
 
 <a>https://github.com/sindresorhus/guides/blob/main/docker-without-sudo.md</a> newgrp docker
 
-## go into docker container shell:
+## Go into docker container shell:
 
 - docker exec -it container_id bash
 - psql -h localhost -U minhthuong
@@ -104,7 +134,7 @@ $ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugi
 - sudo systemctl disable docker.service
 - sudo systemctl disable docker.socket
 
-# install java and manage version
+# Install java and manage version
 
 - sudo apt install openjdk-17-jdk -y
 - sudo apt install openjdk-11-jdk -y
@@ -114,7 +144,7 @@ $ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugi
 
 # Install Mongodb
 
-## Down amd64.deb of mongo server community and mongo shell or install both on mongo docs, install mongo compass
+> You can down amd64.deb of mongo server community and mongo shell or install both on mongo docs
 
 - sudo dpkg -i mongo-org-server_6.0.5_amd64.deb
 - sudo systemctl enable/disable/start/restart/stop/status mongod
@@ -124,6 +154,10 @@ $ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugi
 - sudo dpkg -i mongo-mongosh_1.8.2_amd64.deb
 - mongosh
 - show dbs;
+
+## Install mongodb compass
+
+- <a> https://www.mongodb.com/try/download/shell </a>
 
 ## Create database and user for mongo database
 
@@ -147,6 +181,9 @@ $ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugi
 - sudo systemctl status/start/restart/stop/enable mysql-server
 - sudo mysq
 - mysql> ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root';
+
+## Setup mysql authen
+
 - sudo mysql_secure_installation
 - set up validate password component => no
 - change password => yes
@@ -165,15 +202,16 @@ $ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugi
 - sudo snap install redis
 - sudo snap enable/start/stop/restart redis
 - sudo snap services
-- sudo nano /etc/redis/redis.conf
+- sudo nano /etc/redis/redis.conf change requirepass yourpassword supervised systemd  
+  bind 127.0.0.1 ::1 **The default username of redis-server is "default"**
+
+## Test redis server
+
 - ss -an | grep 6739
 - redis.cli => redis.cli => enter redis server
 - ping
 - set test "my_value"
 - get test
-
-change requirepass yourpassword supervised systemd  
-bind 127.0.0.1 ::1 **The default username of redis-server is "default"**
 
 ## Install redis insight
 
