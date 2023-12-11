@@ -1,7 +1,7 @@
 - [Check version ubuntu](#check-version-ubuntu)
 
 - [Show all active port](#show-all-active-port)
-- [adduser oscar](#adduser-oscar)
+- [Add user Ubuntu](#add-user-ubuntu)
 - [install node nvm](#install-node-nvm)
 - [Install rabbitmq](#install-rabbitmq)
 - [Nginx config](#nginx-config)
@@ -19,8 +19,9 @@
 - [Install redis](#install-redis)
   - [Install redis insight](#install-redis-insight)
 
-Check version ubuntu
-============
+
+
+# Check version ubuntu
 
 - lsb_release -a
 
@@ -28,9 +29,10 @@ Check version ubuntu
 
 - ss -tuln
 
-# adduser oscar
+# Add user Ubuntu
 
-- sudo adduser oscar <a> https://www.digitalocean.com/community/tutorials/how-to-add-and-delete-users-on-ubuntu-20-04 </a>
+- sudo adduser oscar
+-  <a> https://www.digitalocean.com/community/tutorials/how-to-add-and-delete-users-on-ubuntu-20-04 </a>
 
 # install node nvm
 
