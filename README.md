@@ -32,6 +32,9 @@
 # Add user Ubuntu
 
 - sudo adduser oscar
+- sudo usermod -aG sudo <username>: add user to sudo
+- sudo usermod -aG <group_name> <username>: add user to user group
+- sudo chown <username>:<group_name> /path/to/<folder_name>
 - <a> https://www.digitalocean.com/community/tutorials/how-to-add-and-delete-users-on-ubuntu-20-04 </a>
 
 # install node nvm
