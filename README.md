@@ -57,6 +57,7 @@
 
 # Nginx config
 
+## Nginx config for serverport
 - write nginx conf in sites-available and ln
 - touch oscar-be.conf
 - nano oscar-be.conf
@@ -89,7 +90,32 @@ server {
 
 
 
+
+
 ```
+
+## Nginx config for html static 
+``` ts
+server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+
+	root /var/www/html;
+
+	index index.html index.htm index.nginx-debian.html;
+
+	server_name _;
+
+	location / {
+		try_files $uri /index.html;
+	}
+
+	# Other configurations...
+}
+
+
+```
+
 
 - systemctl -t nginx
 - systemctl restart nginx
