@@ -152,6 +152,12 @@ $ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugi
 
 <a>https://github.com/sindresorhus/guides/blob/main/docker-without-sudo.md</a> newgrp docker
 
+## Build Docker images and up to Docker hub
+- docker build -t tsme-frontend .
+- docker tag tsme-frontend minhthuong031103/tsme:latest
+- docker push minhthuong031103/tsme:latest
+- docker pull minhthuong031103/tsme:latest
+
 ## Go into docker container shell:
 
 - docker exec -it container_id bash
