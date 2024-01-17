@@ -1,12 +1,14 @@
 - [Check version ubuntu](#check-version-ubuntu)
-
 - [Show all active port](#show-all-active-port)
 - [Add user Ubuntu](#add-user-ubuntu)
 - [install node nvm](#install-node-nvm)
 - [Install rabbitmq](#install-rabbitmq)
 - [Nginx config](#nginx-config)
+  - [Nginx config for serverport](#nginx-config-for-serverport)
+  - [Nginx config for html static](#nginx-config-for-html-static)
 - [Install docker, docker desktop and docker compose:](#install-docker-docker-desktop-and-docker-compose)
   - [Executing the Docker Command Without Sudo](#executing-the-docker-command-without-sudo)
+  - [Build Docker images and up to Docker hub](#build-docker-images-and-up-to-docker-hub)
   - [Go into docker container shell:](#go-into-docker-container-shell)
   - [Disable/ enable docker on startup:](#disable-enable-docker-on-startup)
 - [Install java and manage version](#install-java-and-manage-version)
@@ -20,6 +22,7 @@
 - [Install redis](#install-redis)
   - [Test redis server](#test-redis-server)
   - [Install redis insight](#install-redis-insight)
+  - [Install all dependencies when using dpkg](#install-all-dependencies-when-using-dpkg)
 
 # Check version ubuntu
 
@@ -251,3 +254,7 @@ $ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugi
 ## Install redis insight
 
 - sudo dpkg -i RedisInsight-linux-amd64.deb
+
+## Install all dependencies when using dpkg 
+![image](https://github.com/minhthuong031103/Ubuntu-Dai-Phap-Chan-kinh/assets/101078033/510e1a7a-f7ae-4066-a15a-23f324a362c3)
+
