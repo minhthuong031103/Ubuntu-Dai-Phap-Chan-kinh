@@ -256,6 +256,17 @@ $ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugi
 
 - sudo dpkg -i RedisInsight-linux-amd64.deb
 
-## Install all dependencies when using dpkg 
+# Install all dependencies when using dpkg 
 ![image](https://github.com/minhthuong031103/Ubuntu-Dai-Phap-Chan-kinh/assets/101078033/510e1a7a-f7ae-4066-a15a-23f324a362c3)
+
+# Install rabbitmq
+
+- sudo apt install rabbitmq-server
+- rabbitmqctl add_user oscar abcxyz
+- rabbitmqctl set_user_tags oscar administrator
+- rabbitmqctl set*permissions -p / admin ".*" ".\_" ".\*"
+- rabbitmq-plugins enable rabbitmq_management
+- sudo systemctl enable/disable/start/restart/stop/status rabbitmq-server
+- rabbitmqctl change_password oscar password
+
 
