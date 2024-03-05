@@ -217,8 +217,9 @@ sudo apt-get update
 
 - sudo apt install mysql-server
 - sudo systemctl status/start/restart/stop/enable mysql-server
-- sudo mysq
+- sudo mysql
 - mysql> ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root';
+![image](https://github.com/minhthuong031103/Ubuntu-Dai-Phap-Chan-kinh/assets/101078033/0785467a-83ab-4594-9999-4ab0b05607cf)
 
 ## Setup mysql authen
 
