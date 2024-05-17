@@ -24,7 +24,7 @@
   - [Test redis server](#test-redis-server)
   - [Install redis insight](#install-redis-insight)
   - [Install all dependencies when using dpkg](#install-all-dependencies-when-using-dpkg)
-
+https://episyche.com/blog/user-guide-for-deploying-the-nextjs-app-in-production-using-pm2-and-nginx
 # Check version ubuntu
 
 - lsb_release -a
